@@ -1,0 +1,36 @@
+{
+  "name": "dittofi-html-to-pdf",
+  "version": "2.0.0",
+  "description": "AWS Lambda function that converts HTML pages to PDF documents",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --quiet .",
+    "lint:staged": "./node_modules/.bin/eslint --quiet",
+    "lint:fix": "npm run lint -- --fix",
+    "pack": "rm -f package.zip && zip package.zip -r index.js utils lib fonts",
+    "deploy:dev": "npm run pack && aws lambda update-function-code --no-cli-pager --region us-east-1 --function-name htmlToPdf --zip-file fileb://`pwd`/package.zip",
+    "deploy:prod": "npm run pack && aws lambda update-function-code --no-cli-pager --region us-east-1 --function-name htmlToPdf --zip-file fileb://`pwd`/package.zip"
+  },
+  "devDependencies": {
+    "@zeplin/eslint-config": "^2.0.0",
+    "eslint": "^4.0.0",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dittofi/dittofi-html-to-pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dittofi/dittofi-html-to-pdf/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run --silent lint:staged"
+    ]
+  }
+}
