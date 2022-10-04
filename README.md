@@ -2,15 +2,13 @@
 
 This is an AWS Lambda function that converts HTML pages to PDF documents using wkhtmltopdf (0.12.4), it implements a simple interface to read and HTML input and output PDF content.
 
-> **WARNING**: You must use v2.x.x tag if you are using Node.js runtime >=10.x in AWS Lambda.
-
 ## Input
 
 Input event to this function has the following structure:
 
 ```
 {
-    "html": "<!DOCTYPE html><html><head><title>HTML doc</title></head><body>Content<body></html>"
+    "html": "<html>example event</html>"
 }
 ```
 
